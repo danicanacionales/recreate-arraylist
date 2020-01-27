@@ -4,67 +4,118 @@ public class ArrayListV2 {
 
     private int lastIndex;
 
-    /**
-     * Creates a new dynamic array with size of 1
-     */
     public ArrayListV2 () {
         this.array = new String[1];
         this.lastIndex = 0;
     }
 
     /**
-     *
-     * @param value
+     * number of items
      */
-    public void add(String value) {
-        if(lastIndex >= getSize()) {
-            resize();
-        }
-
-        this.array[lastIndex] = value;
-        lastIndex++;
-    }
-
-    public String get(int index) {
-
-        if(index > getLastIndex() - 1) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-
-        return this.array[index - 1];
-    }
-
-    private void resize() {
-        String[] newArray = new String[getSize() * 2];
-
-        for(int i = 0; i < getSize(); i++) {
-            newArray[i] = this.array[i];
-        }
-
-        this.array = newArray;
-    }
-
-    public void printValues() {
-
-        if(getSize() == 0) {
-            System.out.println("ArrayListV2 is empty!");
-        } else {
-            System.out.print("[ ");
-
-            for(int i = 0; i < lastIndex; i++) {
-                System.out.print(this.array[i] + " ");
-            }
-
-            System.out.println("]");
-        }
-    }
-
-
-    public int getLastIndex() {
+    public int size() {
         return this.lastIndex;
     }
 
-    public int getSize() {
+    /**
+     * number of items it can hold
+     */
+    public int capacity() {
         return this.array.length;
+    }
+
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
+
+    /**
+     * returns item at given index, blows up if index out of bounds
+     */
+    public String at(int index) {
+        if(index >= this.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return array[index];
+    }
+
+    /**
+     * adds item at the end of the list
+     */
+    public void push(String item) {
+        upsize();
+
+        this.array[lastIndex] = item;
+        lastIndex++;
+    }
+
+    /**
+     * can use insert above at index 0
+     */
+    public void prepend(String item) {
+        upsize();
+
+        if(lastIndex == 0) {
+            array[lastIndex] = item;
+            lastIndex++;
+            return;
+        }
+
+        for(int i = lastIndex; i > 0; i--) {
+            array[i] = array[i - 1];
+        }
+
+        array[0] = item;
+        lastIndex++;
+    }
+
+    /**
+     * remove from end, return value
+     */
+    public String pop() {
+        String lastElement = array[lastIndex - 1];
+        array[lastIndex - 1] = null;
+
+        lastIndex--;
+        return lastElement;
+    }
+
+    /**
+     * looks for value and returns first index with that value, -1 if not found
+     */
+    public int find(String item) {
+
+        for(int i = 0; i < lastIndex; i++) {
+            if(item.equals(array[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public void printElements() {
+        System.out.print("[ ");
+        for(int i = 0; i < lastIndex; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("]");
+    }
+
+    private void upsize() {
+        if(lastIndex < capacity()) {
+            return;
+        }
+
+        String[] newArray = new String[capacity() * 2];
+
+        for(int i = 0; i < size(); i++) {
+            newArray[i] = array[i];
+        }
+
+        array = newArray;
+    }
+
+    private void downsize() {
+        
     }
 }

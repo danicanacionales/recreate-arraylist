@@ -6,23 +6,24 @@ public class Main {
 
         ArrayListV2 arrayListV2 = new ArrayListV2();
 
-        arrayListV2.add("One");
-        arrayListV2.add("Two");
-        arrayListV2.add("Three");
-        arrayListV2.add("Four");
-        arrayListV2.add("Five");
-        arrayListV2.add("Six");
+        print("Array size: " + arrayListV2.size());
+
+        arrayListV2.push("Z");
+        arrayListV2.prepend("A");
+        arrayListV2.prepend("B");
+        arrayListV2.push("Y");
+        arrayListV2.prepend("C");
+        arrayListV2.prepend("D");
+        arrayListV2.prepend("E");
+
+        System.out.println(arrayListV2.pop());
 
 
-        arrayListV2.printValues();
-        print("Last index of ArrayListV2: " + arrayListV2.getLastIndex());
-        print("Size of ArrayListV2: " + arrayListV2.getSize());
+        arrayListV2.printElements();
 
-
-        print("Value at index 4: " + arrayListV2.get(4));
-
-        print("Expected to throw an ArrayIndexOutOfBoundsException:");
-        print(arrayListV2.get(7));
+        System.out.println("Find A: " + arrayListV2.find("A"));
+        System.out.println("Find X: " + arrayListV2.find("X"));
+        print("Array size: " + arrayListV2.capacity());
     }
 
     public static void print(String string) {
