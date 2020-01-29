@@ -8,22 +8,26 @@ public class Main {
 
         print("Array size: " + arrayListV2.size());
 
-        arrayListV2.push("Z");
-        arrayListV2.prepend("A");
-        arrayListV2.prepend("B");
-        arrayListV2.push("Y");
-        arrayListV2.prepend("C");
-        arrayListV2.prepend("D");
-        arrayListV2.prepend("E");
+        arrayListV2.push("A");
+        arrayListV2.push("B");
+        arrayListV2.push("C");
+        arrayListV2.push("D");
+        arrayListV2.push("E");
+        arrayListV2.push("F");
+        arrayListV2.push("G");
 
-        System.out.println(arrayListV2.pop());
+        arrayListV2.printElements();
+        arrayListV2.printArray();
+        print("Array capacity: " + arrayListV2.capacity());
+        System.out.println("Array size: " + arrayListV2.size());
 
-
+        arrayListV2.insert(3, "X");
         arrayListV2.printElements();
 
         System.out.println("Find A: " + arrayListV2.find("A"));
         System.out.println("Find X: " + arrayListV2.find("X"));
-        print("Array size: " + arrayListV2.capacity());
+        print("Array capacity: " + arrayListV2.capacity());
+        System.out.println("Array size: " + arrayListV2.size());
     }
 
     public static void print(String string) {
